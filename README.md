@@ -6,7 +6,7 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to wrote some h
 
 ### init
 ```clojure
-[com.ozjongwon/dynohub "1.0.0-RC1"]              ; project.clj
+[com.ozjongwon/dynohub "1.0.0-SNAPSHOT"]              ; project.clj
 
 
 (ns my-app (:use-macros [ozjongwon.cljangular :only [def.module		def.config

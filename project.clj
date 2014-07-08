@@ -1,4 +1,4 @@
-(defproject com.ozjongwon/cljangular "1.0.0-RC1"
+(defproject com.ozjongwon/cljangular "1.0.0-SNAPSHOT"
   :author "Jong-won Choi"
   :description "Macros for AngularJS programming in ClojureScript"
   :url "https://github.com/ozjongwon/cljangular"
