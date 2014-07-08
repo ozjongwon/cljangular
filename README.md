@@ -9,7 +9,7 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
 [com.ozjongwon/dynohub "1.0.0-SNAPSHOT"]              ; project.clj
 
 
-(ns my-app (:use-macros [ozjongwon.cljangular :only [def.module		def.config
+(ns my-app (:use-macros [cljangular.core :only [def.module		def.config
 						     def.controller	def.directive
 					  	     def.filter		def.service
 					  	     def.factory	def.provider
