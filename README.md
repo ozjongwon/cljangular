@@ -1,6 +1,6 @@
 # Cljangular, macros for AngularJS programming in ClojureScript
 
-After playing with gyr(https://github.com/purnam/gyr), I decided to wrote some helper macros for AngularJS programming in ClojureScript.
+After playing with gyr(https://github.com/purnam/gyr), I decided to write some helper macros for AngularJS programming in ClojureScript.
 
 ## Usage
 
@@ -12,8 +12,8 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to wrote some h
 (ns my-app (:use-macros [ozjongwon.cljangular :only [def.module		def.config
 						     def.controller	def.directive
 					  	     def.filter		def.service
-					  	     def.factory		def.provider
-					  	     def.constant		def.value
+					  	     def.factory	def.provider
+					  	     def.constant	def.value
 					  	     def.run]]))
 
 ```
