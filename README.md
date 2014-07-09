@@ -84,11 +84,6 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
       data)))
 ```
 
-### def.service
-```clojure
-(def.service module-name:service-name [& injections] & body]
-```
-
 ### def.factory
 ```clojure
 (def.factory module-name:factory-name [& injections] & body]
@@ -103,6 +98,11 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
                               (if (= (aget record "id") id)
                                 (aset record "count" (inc (aget record "count")))
                                 (recur (inc i))))))))))
+```
+
+### def.service
+```clojure
+(def.service module-name:service-name [& injections] & body]
 ```
 
 ### def.provider
