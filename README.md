@@ -9,12 +9,12 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
 [com.ozjongwon/dynohub "1.0.0-SNAPSHOT"]              ; project.clj
 
 
-(ns my-app (:use-macros [cljangular.core :only [def.module		def.config
-						     def.controller	def.directive
-					  	     def.filter		def.service
-					  	     def.factory	def.provider
-					  	     def.constant	def.value
-					  	     def.run]]))
+(ns my-app (:use-macros [cljangular.core :only [def.module	def.config
+						def.run		def.controller
+					  	def.constant	def.value
+						def.directive	def.filter
+						def.factory	def.service
+				  		def.provider]]))
 
 ```
 
@@ -38,6 +38,19 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
     (.otherwise (js-obj "templateUrl" "/html/product-list.html"))))
 ```
 
+### def.run
+```clojure
+(def.run module & defs)
+
+(def.run todoApp
+  ([$http] (-> $http
+               (.get "todo.json")
+               (.success (fn [data]
+                           (set! model.items data)))))
+  ;; Just an example of multiple runs!
+  ([] (js/console.log ">>> !!OK!! <<<")))
+```
+
 ### def.controller
 ```clojure
 (def.controller module-name:controller-name [& injections] & body)
@@ -45,6 +58,20 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
 (def.controller sportsStore:sportsStoreCtrl [$scope $http $location dataUrl orderUrl cart]
   (set! (. $scope -data) (js-obj)))
 
+```
+
+### def.constant
+```clojure
+(def.constant module-name:constant-name val)
+
+(def.constant todoApp:cont1 10)
+```
+
+### def.value
+```clojure
+(def.value module-name:var-name val)
+
+(def.value todoApp:val1 20)
 ```
 
 ### def.directive
@@ -88,7 +115,7 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
 ```clojure
 (def.factory module-name:factory-name [& injections] & body]
 
-(def.factory cart.cart []
+(def.factory cart:cart []
   (let [cart-data (array)]
     (js-obj "addProduct" (fn [id name price]
                         (loop [i 0]
@@ -110,32 +137,6 @@ After playing with gyr(https://github.com/purnam/gyr), I decided to write some h
 (def.provider module-name:provider-name [& injections] & body]
 ```
 
-### def.constant
-```clojure
-(def.constant module-name:constant-name val)
-
-(def.constant todoApp:cont1 10)
-```
-
-### def.value
-```clojure
-(def.value module-name:var-name val)
-
-(def.value todoApp:val1 20)
-```
-
-### def.run
-```clojure
-(def.run module & defs)
-
-(def.run todoApp
-  ([$http] (-> $http
-               (.get "todo.json")
-               (.success (fn [data]
-                           (set! model.items data)))))
-  ;; Just an example of multiple runs!
-  ([] (js/console.log ">>> !!OK!! <<<")))
-```
 
 ## License
 
