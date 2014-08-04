@@ -23,9 +23,10 @@
        ;; See https://docs.angularjs.org/guide/di
        (.config (~'array ~@(map str providers)
                          (fn [~@providers]
-                           ~@body)))))
+                           ~@body
+                           nil)))))
 
-(defmacro angular-factory [fac-fn module:fac injections body]
+(defmacro angular-factory [fac-fn module:fac injections body & return-value]
   (let [[module fac] (-> (str module:fac) (s/split #":"))]
     (assert (and module fac) "Must be <module>:<factory-name>")
     `(-> (js/angular.module ~module)
@@ -33,25 +34,26 @@
          ;; See https://docs.angularjs.org/guide/di
          (~fac-fn ~fac (~'array ~@(map str injections)
                             (fn [~@injections]
-                              ~@body))))))
+                              ~@body
+                              ~@return-value))))))
 
 (defmacro def.controller [module:ctrl [& injections] & body]
-  `(angular-factory .controller ~module:ctrl ~injections ~body))
+  `(angular-factory .controller ~module:ctrl ~injections ~body nil))
 
 (defmacro def.directive [module:directive [& injections] & body]
-  `(angular-factory .directive ~module:directive ~injections ~body))
+  `(angular-factory .directive ~module:directive ~injections ~body nil))
 
 (defmacro def.filter [module:filter [& injections] & body]
-  `(angular-factory .filter ~module:filter ~injections ~body))
+  `(angular-factory .filter ~module:filter ~injections ~body nil))
 
 (defmacro def.service [module:service [& injections] & body]
-  `(angular-factory .service ~module:service ~injections ~body))
+  `(angular-factory .service ~module:service ~injections ~body nil))
 
 (defmacro def.factory [module:factory [& injections] & body]
   `(angular-factory .factory ~module:factory ~injections ~body))
 
 (defmacro def.provider [module:provider [& injections] & body]
-  `(angular-factory .provider ~module:provider ~injections ~body))
+  `(angular-factory .provider ~module:provider ~injections ~body nil))
 
 (defmacro angular-var [fac-fn module:var val]
   (let [[module var] (-> (str module:var) (s/split #":"))]
@@ -69,7 +71,7 @@
   `(do
      ~@(map (fn [[params & body]]
               `(-> (js/angular.module ~(str module))
-                   (.run (fn ~params ~@body))))
+                   (.run (fn ~params ~@body nil))))
             defs)))
 
 ;;; CORE.CLJ ends here
