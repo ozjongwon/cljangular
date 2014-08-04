@@ -67,9 +67,9 @@
 
 (defmacro def.run [module & defs]
   `(do
-     ~@(map (fn [[params body]]
+     ~@(map (fn [[params & body]]
               `(-> (js/angular.module ~(str module))
-                   (.run (fn ~params ~body))))
+                   (.run (fn ~params ~@body))))
             defs)))
 
 ;;; CORE.CLJ ends here
