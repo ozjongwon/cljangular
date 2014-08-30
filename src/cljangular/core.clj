@@ -41,19 +41,19 @@
   `(angular-factory .controller ~module:ctrl ~injections ~body nil))
 
 (defmacro def.directive [module:directive [& injections] & body]
-  `(angular-factory .directive ~module:directive ~injections ~body nil))
+  `(angular-factory .directive ~module:directive ~injections ~body))
 
 (defmacro def.filter [module:filter [& injections] & body]
-  `(angular-factory .filter ~module:filter ~injections ~body nil))
+  `(angular-factory .filter ~module:filter ~injections ~body))
 
 (defmacro def.service [module:service [& injections] & body]
-  `(angular-factory .service ~module:service ~injections ~body nil))
+  `(angular-factory .service ~module:service ~injections ~body))
 
 (defmacro def.factory [module:factory [& injections] & body]
   `(angular-factory .factory ~module:factory ~injections ~body))
 
 (defmacro def.provider [module:provider [& injections] & body]
-  `(angular-factory .provider ~module:provider ~injections ~body nil))
+  `(angular-factory .provider ~module:provider ~injections ~body))
 
 (defmacro angular-var [fac-fn module:var val]
   (let [[module var] (-> (str module:var) (s/split #":"))]
